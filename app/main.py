@@ -32,8 +32,7 @@ async def lifespan(app: FastAPI):
         logger.info(f"Qdrant collection '{settings.QDRANT_COLLECTION_NAME}' is ready.")
     except Exception as e:
         logger.warning(
-            f"Could not connect to Qdrant during startup: {e}. "
-            "Ensure Qdrant is running on port 6333 before uploading documents."
+            f"Could not initialize Qdrant storage during startup: {e}."
         )
 
     # 2. Warm up embedding model in background or cache
@@ -88,7 +87,9 @@ async def health_check():
     try:
         client = get_qdrant_client()
         client.get_collections()
-        qdrant_status = "connected"
+        from app.database import get_qdrant_mode
+        mode = get_qdrant_mode()
+        qdrant_status = f"connected ({mode})"
     except Exception:
         qdrant_status = "unavailable"
 

@@ -166,25 +166,25 @@ export default function LockGateway() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl overflow-y-auto">
-      <div className="w-full max-w-lg bg-[#09090b]/98 border border-zinc-800 rounded-2xl shadow-[0_0_60px_rgba(185,28,28,0.15)] overflow-hidden animate-fade-in my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md overflow-y-auto">
+      <div className="w-full max-w-lg bg-white border border-slate-200/90 rounded-2xl shadow-2xl overflow-hidden animate-fade-in my-8">
         
         {/* Gateway Header */}
-        <div className="p-6 text-center border-b border-zinc-800 bg-black/40">
-          <div className="inline-flex p-3 rounded-2xl bg-red-950/60 border border-red-800/50 text-red-400 shadow-inner mb-3">
+        <div className="p-6 text-center border-b border-slate-200 bg-slate-50/80">
+          <div className="inline-flex p-3 rounded-2xl bg-emerald-50 border border-emerald-200/80 text-emerald-600 shadow-sm mb-3">
             <Lock className="w-6 h-6" />
           </div>
-          <h2 className="text-lg font-bold text-white tracking-tight">
+          <h2 className="text-lg font-bold text-slate-900 tracking-tight">
             Tenant Workspace Gateway
           </h2>
-          <p className="text-xs text-zinc-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Role-gated security barrier. Your active role is locked strictly by your role-specific passkey.
           </p>
         </div>
 
         {/* Mode Selector Tabs */}
-        <div className="p-2 border-b border-zinc-800 bg-black/20">
-          <div className="grid grid-cols-2 p-1 rounded-xl bg-black/60 border border-zinc-800">
+        <div className="p-3 border-b border-slate-200 bg-slate-50/50">
+          <div className="grid grid-cols-2 p-1 rounded-xl bg-slate-100/90 border border-slate-200">
             <button
               onClick={() => {
                 setActiveMode('enter');
@@ -192,8 +192,8 @@ export default function LockGateway() {
               }}
               className={`flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                 activeMode === 'enter'
-                  ? 'bg-red-950/70 text-white shadow-sm border border-red-800/60'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-white text-emerald-700 shadow-sm border border-slate-200/80 font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <LogIn className="w-3.5 h-3.5" />
@@ -206,14 +206,14 @@ export default function LockGateway() {
               }}
               className={`flex items-center justify-center gap-2 py-2 text-xs font-semibold rounded-lg transition-all relative cursor-pointer ${
                 activeMode === 'register'
-                  ? 'bg-red-950/70 text-white shadow-sm border border-red-800/60'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-white text-emerald-700 shadow-sm border border-slate-200/80 font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <PlusCircle className="w-3.5 h-3.5" />
               <span>Register Company</span>
               {registeredCompanies.length === 0 && !loadingCompanies && (
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-0.5" title="Register your first company" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-0.5" title="Register your first company" />
               )}
             </button>
           </div>
@@ -222,18 +222,18 @@ export default function LockGateway() {
         {/* Tab 1: Enter Workspace Form */}
         {activeMode === 'enter' && (
           loadingCompanies ? (
-            <div className="p-8 text-center text-xs text-zinc-400 flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin text-red-400" />
+            <div className="p-8 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
+              <Loader2 className="w-4 h-4 animate-spin text-emerald-600" />
               <span>Loading registered companies...</span>
             </div>
           ) : registeredCompanies.length === 0 ? (
             <div className="p-6 text-center space-y-4">
-              <div className="w-12 h-12 mx-auto rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
-                <Building2 className="w-6 h-6 text-red-400" />
+              <div className="w-12 h-12 mx-auto rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                <Building2 className="w-6 h-6 text-emerald-600" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-sm font-semibold text-white">No Companies Registered Yet</h3>
-                <p className="text-xs text-zinc-400 max-w-xs mx-auto">
+                <h3 className="text-sm font-bold text-slate-900">No Companies Registered Yet</h3>
+                <p className="text-xs text-slate-500 max-w-xs mx-auto">
                   There are currently no tenant workspaces. Please register your company first to configure tiered role passkeys.
                 </p>
               </div>
@@ -243,7 +243,7 @@ export default function LockGateway() {
                   setActiveMode('register');
                   setRegError('');
                 }}
-                className="inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-semibold text-xs transition-all shadow-lg shadow-red-950/40 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-semibold text-xs transition-all shadow-md shadow-emerald-600/20 cursor-pointer"
               >
                 <PlusCircle className="w-4 h-4" />
                 <span>Register Company Now</span>
@@ -252,15 +252,15 @@ export default function LockGateway() {
           ) : (
             <form onSubmit={handleVerifySubmit} className="p-6 space-y-4">
               {verifyError && (
-                <div className="flex items-center gap-2 p-3 text-xs rounded-xl bg-red-950/30 border border-red-800/40 text-red-300">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                <div className="flex items-center gap-2 p-3 text-xs rounded-xl bg-rose-50 border border-rose-200 text-rose-700">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-500" />
                   <span>{verifyError}</span>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5 flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-red-400" />
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-emerald-600" />
                   Select Company Workspace
                 </label>
                 <select
@@ -269,10 +269,10 @@ export default function LockGateway() {
                     setSelectedTenant(e.target.value);
                     setVerifyError('');
                   }}
-                  className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 text-xs sm:text-sm text-zinc-100 rounded-xl px-3.5 py-2.5 outline-none cursor-pointer font-sans"
+                  className="w-full bg-white border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-xs sm:text-sm text-slate-900 rounded-xl px-3.5 py-2.5 outline-none cursor-pointer font-sans shadow-sm"
                 >
                   {registeredCompanies.map((c) => (
-                    <option key={c.tenant_id} value={c.tenant_id} className="bg-[#09090b] text-zinc-100">
+                    <option key={c.tenant_id} value={c.tenant_id} className="bg-white text-slate-900">
                       {c.name} ({c.tenant_id})
                     </option>
                   ))}
@@ -280,8 +280,8 @@ export default function LockGateway() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5 flex items-center gap-1.5">
-                  <KeyRound className="w-3.5 h-3.5 text-red-400" />
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+                  <KeyRound className="w-3.5 h-3.5 text-emerald-600" />
                   Role Access Key (Passkey)
                 </label>
                 <input
@@ -292,12 +292,12 @@ export default function LockGateway() {
                     setVerifyAccessCode(e.target.value);
                     setVerifyError('');
                   }}
-                  className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-600 rounded-xl px-3.5 py-2.5 outline-none font-mono tracking-wider transition-colors"
+                  className="w-full bg-white border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2.5 outline-none font-mono tracking-wider transition-colors shadow-sm"
                   autoFocus
                 />
-                <div className="mt-2 p-3 rounded-xl bg-black/60 border border-zinc-800 text-[11px] text-zinc-400 space-y-1">
-                  <div className="flex items-center gap-1.5 text-zinc-300 font-medium">
-                    <Shield className="w-3.5 h-3.5 text-red-400" />
+                <div className="mt-2 p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600 space-y-1">
+                  <div className="flex items-center gap-1.5 text-slate-900 font-semibold">
+                    <Shield className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Tiered Role Lock:</span>
                   </div>
                   <p>
@@ -309,7 +309,7 @@ export default function LockGateway() {
               <button
                 type="submit"
                 disabled={isVerifying || !verifyAccessCode.trim()}
-                className="w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 disabled:opacity-40 text-white font-semibold text-xs sm:text-sm transition-all shadow-lg shadow-red-950/40 cursor-pointer"
+                className="w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 disabled:opacity-40 text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-emerald-600/20 cursor-pointer"
               >
                 {isVerifying ? (
                   <>
@@ -331,25 +331,25 @@ export default function LockGateway() {
         {activeMode === 'register' && (
           <form onSubmit={handleRegisterSubmit} className="p-6 space-y-4">
             {regError && (
-              <div className="flex items-center gap-2 p-3 text-xs rounded-xl bg-red-950/30 border border-red-800/40 text-red-300">
-                <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+              <div className="flex items-center gap-2 p-3 text-xs rounded-xl bg-rose-50 border border-rose-200 text-rose-700">
+                <AlertCircle className="w-4 h-4 shrink-0 text-rose-500" />
                 <span>{regError}</span>
               </div>
             )}
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-red-400" />
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-emerald-600" />
                   Company / Organization Name
                 </label>
                 <button
                   type="button"
                   onClick={autoGenerateKeys}
-                  className="flex items-center gap-1 text-[11px] text-zinc-400 hover:text-red-300 transition-colors cursor-pointer"
+                  className="flex items-center gap-1 text-[11px] text-emerald-600 hover:text-emerald-700 font-medium transition-colors cursor-pointer"
                   title="Auto-fill example distinct passkeys"
                 >
-                  <Sparkles className="w-3 h-3 text-red-400" />
+                  <Sparkles className="w-3 h-3 text-emerald-500" />
                   <span>Auto-fill Keys</span>
                 </button>
               </div>
@@ -361,7 +361,7 @@ export default function LockGateway() {
                   setRegName(e.target.value);
                   setRegError('');
                 }}
-                className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-600 rounded-xl px-3.5 py-2.5 outline-none transition-colors"
+                className="w-full bg-white border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2.5 outline-none transition-colors shadow-sm"
                 autoFocus
               />
             </div>
@@ -369,11 +369,11 @@ export default function LockGateway() {
             {/* Optional Company Logo Field */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300 flex items-center gap-1.5">
-                  <ImageIcon className="w-3.5 h-3.5 text-red-400" />
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-emerald-600" />
                   Company Logo (Optional)
                 </label>
-                <label className="flex items-center gap-1 text-[11px] text-red-400 hover:text-red-300 transition-colors cursor-pointer">
+                <label className="flex items-center gap-1 text-[11px] text-emerald-600 hover:text-emerald-700 font-medium transition-colors cursor-pointer">
                   <Upload className="w-3 h-3" />
                   <span>Upload File</span>
                   <input
@@ -394,22 +394,22 @@ export default function LockGateway() {
                     setLogoPreview(e.target.value);
                     setRegError('');
                   }}
-                  className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 text-xs sm:text-sm text-zinc-100 placeholder:text-zinc-600 rounded-xl px-3.5 py-2.5 outline-none transition-colors"
+                  className="w-full bg-white border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2.5 outline-none transition-colors shadow-sm"
                 />
 
                 {logoPreview && (
-                  <div className="flex items-center gap-3 p-2 bg-black/60 border border-zinc-800 rounded-xl">
+                  <div className="flex items-center gap-3 p-2 bg-slate-50 border border-slate-200 rounded-xl">
                     <img
                       src={logoPreview}
                       alt="Logo preview"
-                      className="w-8 h-8 rounded-lg object-contain border border-zinc-700 p-0.5 bg-black/40 shrink-0"
+                      className="w-8 h-8 rounded-lg object-contain border border-slate-300 p-0.5 bg-white shrink-0 shadow-sm"
                       onError={() => setLogoPreview('')}
                     />
                     <div className="overflow-hidden min-w-0 flex-1">
-                      <p className="text-[11px] text-zinc-200 font-medium truncate">
+                      <p className="text-[11px] text-slate-800 font-medium truncate">
                         {regLogoUrl.startsWith('data:') ? 'Image File Attached' : regLogoUrl}
                       </p>
-                      <p className="text-[10px] text-emerald-400">Ready for workspace</p>
+                      <p className="text-[10px] text-emerald-600 font-semibold">Ready for workspace</p>
                     </div>
                     <button
                       type="button"
@@ -417,7 +417,7 @@ export default function LockGateway() {
                         setRegLogoUrl('');
                         setLogoPreview('');
                       }}
-                      className="text-xs text-rose-400 hover:text-rose-300 px-2 py-1 rounded transition-colors cursor-pointer"
+                      className="text-xs text-rose-600 hover:text-rose-700 px-2 py-1 rounded transition-colors cursor-pointer font-medium"
                     >
                       Remove
                     </button>
@@ -427,19 +427,19 @@ export default function LockGateway() {
             </div>
 
             {/* 3 Tiered Passkey Inputs */}
-            <div className="space-y-3 pt-1 border-t border-zinc-800">
-              <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">
+            <div className="space-y-3 pt-1 border-t border-slate-200">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
                 Define 3 Distinct Role Passkeys
               </span>
 
               {/* Admin Key */}
               <div>
-                <label className="block text-xs font-medium text-zinc-300 mb-1 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5 text-red-400" />
+                <label className="block text-xs font-medium text-slate-700 mb-1 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-800">
+                    <Shield className="w-3.5 h-3.5 text-emerald-600" />
                     Admin Passkey
                   </span>
-                  <span className="text-[10px] font-mono text-red-300 bg-red-950/60 px-1.5 py-0.5 rounded border border-red-800/60">
+                  <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 font-semibold">
                     Full Admin Access
                   </span>
                 </label>
@@ -451,18 +451,18 @@ export default function LockGateway() {
                     setAdminKey(e.target.value);
                     setRegError('');
                   }}
-                  className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 text-xs sm:text-sm text-red-200 placeholder:text-zinc-600 rounded-xl px-3.5 py-2 outline-none font-mono tracking-wider transition-colors"
+                  className="w-full bg-white border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2 outline-none font-mono tracking-wider transition-colors shadow-sm"
                 />
               </div>
 
               {/* HR Key */}
               <div>
-                <label className="block text-xs font-medium text-zinc-300 mb-1 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5">
-                    <Briefcase className="w-3.5 h-3.5 text-rose-400" />
+                <label className="block text-xs font-medium text-slate-700 mb-1 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-800">
+                    <Briefcase className="w-3.5 h-3.5 text-blue-600" />
                     HR Passkey
                   </span>
-                  <span className="text-[10px] font-mono text-rose-300 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-800/60">
+                  <span className="text-[10px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 font-semibold">
                     HR & Personnel Access
                   </span>
                 </label>
@@ -474,18 +474,18 @@ export default function LockGateway() {
                     setHrKey(e.target.value);
                     setRegError('');
                   }}
-                  className="w-full bg-black/60 border border-zinc-800 focus:border-rose-500 text-xs sm:text-sm text-rose-200 placeholder:text-zinc-600 rounded-xl px-3.5 py-2 outline-none font-mono tracking-wider transition-colors"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2 outline-none font-mono tracking-wider transition-colors shadow-sm"
                 />
               </div>
 
               {/* Employee Key */}
               <div>
-                <label className="block text-xs font-medium text-zinc-300 mb-1 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5">
-                    <Users className="w-3.5 h-3.5 text-zinc-400" />
+                <label className="block text-xs font-medium text-slate-700 mb-1 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-800">
+                    <Users className="w-3.5 h-3.5 text-slate-600" />
                     Employee Passkey
                   </span>
-                  <span className="text-[10px] font-mono text-zinc-300 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-700">
+                  <span className="text-[10px] font-mono text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200 font-semibold">
                     General Employee Access
                   </span>
                 </label>
@@ -497,7 +497,7 @@ export default function LockGateway() {
                     setEmployeeKey(e.target.value);
                     setRegError('');
                   }}
-                  className="w-full bg-black/60 border border-zinc-800 focus:border-zinc-500 text-xs sm:text-sm text-zinc-200 placeholder:text-zinc-600 rounded-xl px-3.5 py-2 outline-none font-mono tracking-wider transition-colors"
+                  className="w-full bg-white border border-slate-300 focus:border-slate-500 focus:ring-1 focus:ring-slate-500 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2 outline-none font-mono tracking-wider transition-colors shadow-sm"
                 />
               </div>
             </div>
@@ -505,7 +505,7 @@ export default function LockGateway() {
             <button
               type="submit"
               disabled={isRegistering || !regName.trim() || !adminKey.trim() || !hrKey.trim() || !employeeKey.trim()}
-              className="w-full mt-3 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 disabled:opacity-40 text-white font-semibold text-xs sm:text-sm transition-all shadow-lg shadow-red-950/40 cursor-pointer"
+              className="w-full mt-3 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 disabled:opacity-40 text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-emerald-600/20 cursor-pointer"
             >
               {isRegistering ? (
                 <>

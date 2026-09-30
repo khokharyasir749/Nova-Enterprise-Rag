@@ -11,8 +11,9 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = ["*"]
 
     # Qdrant Vector Database
-    QDRANT_HOST: str = "localhost"
-    QDRANT_PORT: int = 6333
+    QDRANT_HOST: Optional[str] = "localhost"
+    QDRANT_PORT: Optional[int] = 6333
+    QDRANT_PATH: Optional[str] = "./qdrant_storage"
     QDRANT_COLLECTION_NAME: str = "enterprise_tenant_chunks"
 
     # Embedding Model Settings

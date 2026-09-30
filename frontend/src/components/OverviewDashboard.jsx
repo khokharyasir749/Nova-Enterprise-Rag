@@ -43,7 +43,7 @@ export default function OverviewDashboard({ onNavigate }) {
       title: 'Intelligent Knowledge Retrieval',
       category: 'Nova Vector Search',
       icon: MessageSquare,
-      iconBg: 'bg-red-500/10 text-red-400 border border-red-500/20',
+      iconBg: 'bg-blue-50 text-blue-600 border border-blue-200',
       description: 'Query company intelligence with strict hardware-accelerated 384-dimensional vector pre-filtering. Only documents cleared for your active security role are ever ingested by Nova to synthesize answers.',
       tags: ['Pre-LLM Isolation', 'Exact Citations', 'Zero Vector Leakage'],
       actionText: 'Launch Nova Console',
@@ -53,7 +53,7 @@ export default function OverviewDashboard({ onNavigate }) {
       title: 'Document & RBAC Indexing',
       category: 'Knowledge Ingestion & Clearance',
       icon: UploadCloud,
-      iconBg: 'bg-rose-500/10 text-rose-400 border border-rose-500/20',
+      iconBg: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
       description: 'Ingest corporate PDF and plain text documents with live recursive chunking, automated embedding generation, and real-time multi-role permissions management in Qdrant.',
       tags: ['384-Dim Vectors', 'Dynamic Chunking', 'Live Role Overrides'],
       actionText: 'Manage Uploaded Documents',
@@ -63,7 +63,7 @@ export default function OverviewDashboard({ onNavigate }) {
       title: 'Immutable Compliance Vault',
       category: 'Security & Audit Logs',
       icon: ShieldAlert,
-      iconBg: 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
+      iconBg: 'bg-amber-50 text-amber-600 border border-amber-200',
       description: 'Review permanent compliance audit trails. Every question, document retrieval, and security rejection is immutably recorded with exact timestamps and granted role clearances.',
       tags: ['Real-Time Audit', 'Access Rejection Proof', 'Exportable Records'],
       actionText: 'Inspect Compliance Logs',
@@ -73,11 +73,11 @@ export default function OverviewDashboard({ onNavigate }) {
   return (
     <div className="space-y-8 animate-fade-in">
       
-      {/* Dark Luxury Cinematic Hero */}
-      <div className="relative rounded-[32px] bg-[#09090b]/90 border border-zinc-800 p-8 sm:p-12 lg:p-16 overflow-hidden shadow-2xl">
-        {/* Subtle cinematic ambient backlights */}
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-red-600/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute -bottom-20 left-1/4 w-[450px] h-[450px] bg-rose-700/15 rounded-full blur-[130px] pointer-events-none" />
+      {/* Clean Light Enterprise Hero */}
+      <div className="relative rounded-[32px] bg-[#F8F9FA] border border-slate-300/60 p-8 sm:p-12 lg:p-16 overflow-hidden shadow-md">
+        {/* Subtle ambient backlights */}
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute -bottom-20 left-1/4 w-[450px] h-[450px] bg-blue-500/10 rounded-full blur-[130px] pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl space-y-6">
           
@@ -87,32 +87,32 @@ export default function OverviewDashboard({ onNavigate }) {
               <img
                 src={logoUrl}
                 alt={displayBrand}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl object-contain border border-zinc-800 bg-black/60 p-1.5 shadow-xl shadow-red-950/20 shrink-0"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl object-contain border border-slate-300/60 bg-white p-1.5 shadow-sm shrink-0"
               />
             )}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 border border-zinc-800 text-xs font-mono text-zinc-300">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-300/60 text-xs font-mono text-slate-700 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Workspace: {displayBrand}</span>
-              <span className="text-zinc-600">•</span>
-              <span className="text-zinc-400">ID: {tenantId}</span>
-              <span className="text-zinc-600">•</span>
-              <span className="text-red-400 font-semibold uppercase">{activeRole} CLEARANCE</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-slate-500">ID: {tenantId}</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-emerald-700 font-semibold uppercase">{activeRole} CLEARANCE</span>
             </div>
           </div>
 
           {/* Editorial Heading */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.08]">
             Enterprise Intelligence,
             <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 via-zinc-300 to-zinc-500">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-700">
               Built for Your Organization.
             </span>
           </h1>
 
           {/* Sub-headline */}
-          <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl leading-relaxed">
             Segregated vector intelligence and role-gated knowledge strictly under{' '}
-            <strong className="text-zinc-100 font-semibold">{displayBrand}</strong>.
+            <strong className="text-slate-900 font-semibold">{displayBrand}</strong>.
             All queries and document embeddings remain strictly quarantined to eliminate data leakage.
           </p>
 
@@ -120,7 +120,7 @@ export default function OverviewDashboard({ onNavigate }) {
           <div className="pt-2">
             <button
               onClick={() => onNavigate('query')}
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-semibold text-sm transition-all duration-200 shadow-xl shadow-red-950/50 hover:shadow-red-900/40 hover:scale-[1.02] cursor-pointer group"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/35 hover:scale-[1.02] cursor-pointer group"
             >
               <Sparkles className="w-4 h-4 text-white" />
               <span>Launch Nova Assistant</span>
@@ -134,10 +134,10 @@ export default function OverviewDashboard({ onNavigate }) {
       {/* Rounded Section Container: Wide Polished Capability Showcase Banners */}
       <div className="space-y-4">
         <div className="flex items-center justify-between px-2">
-          <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
+          <span className="text-xs font-mono uppercase tracking-widest text-slate-500 font-semibold">
             Enterprise Capabilities
           </span>
-          <span className="text-xs text-zinc-500">
+          <span className="text-xs text-slate-400">
             Direct navigation across isolated modules
           </span>
         </div>
@@ -149,27 +149,27 @@ export default function OverviewDashboard({ onNavigate }) {
               <div
                 key={cap.id}
                 onClick={() => onNavigate(cap.id)}
-                className="group relative rounded-[28px] bg-[#09090b]/90 hover:bg-[#0d0d12] border border-zinc-800 hover:border-red-900/50 p-6 sm:p-8 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-red-950/20 overflow-hidden"
+                className="group relative rounded-[28px] bg-[#F8F9FA] hover:bg-white border border-slate-300/60 hover:border-emerald-300 p-6 sm:p-8 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md overflow-hidden"
               >
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                   
                   {/* Left: Icon, Category & Description */}
                   <div className="space-y-3 max-w-3xl">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2.5 rounded-2xl ${cap.iconBg}`}>
+                      <div className={`p-2.5 rounded-2xl ${cap.iconBg} shadow-xs`}>
                         <Icon className="w-5 h-5" />
                       </div>
                       <div>
-                        <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                           {cap.category}
                         </span>
-                        <h2 className="text-lg sm:text-xl font-semibold text-white group-hover:text-red-300 transition-colors">
+                        <h2 className="text-lg sm:text-xl font-semibold text-slate-900 group-hover:text-emerald-700 transition-colors">
                           {cap.title}
                         </h2>
                       </div>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pl-0 lg:pl-14">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-0 lg:pl-14">
                       {cap.description}
                     </p>
 
@@ -178,7 +178,7 @@ export default function OverviewDashboard({ onNavigate }) {
                       {cap.tags.map((tag, idx) => (
                         <span
                           key={idx}
-                          className="px-2.5 py-1 rounded-full bg-white/[0.03] border border-zinc-800 text-[11px] font-mono text-zinc-400"
+                          className="px-2.5 py-1 rounded-full bg-white border border-slate-300/60 text-[11px] font-mono text-slate-600 font-medium"
                         >
                           {tag}
                         </span>
@@ -187,8 +187,8 @@ export default function OverviewDashboard({ onNavigate }) {
                   </div>
 
                   {/* Right: Action Button */}
-                  <div className="flex items-center lg:justify-end shrink-0 pl-0 lg:pl-6 pt-2 lg:pt-0 border-t lg:border-t-0 border-zinc-800">
-                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.04] group-hover:bg-red-600 group-hover:text-white border border-zinc-800 group-hover:border-red-500 text-xs font-semibold text-zinc-200 transition-all duration-200 shadow-sm">
+                  <div className="flex items-center lg:justify-end shrink-0 pl-0 lg:pl-6 pt-2 lg:pt-0 border-t lg:border-t-0 border-slate-200">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white group-hover:bg-emerald-600 group-hover:text-white border border-slate-300/70 group-hover:border-emerald-500 text-xs font-semibold text-slate-800 transition-all duration-200 shadow-2xs">
                       <span>{cap.actionText}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
@@ -202,15 +202,15 @@ export default function OverviewDashboard({ onNavigate }) {
       </div>
 
       {/* Rounded Section Container: Active Governance & System Specifications */}
-      <div className="rounded-[32px] bg-[#09090b]/90 border border-zinc-800 p-8 shadow-xl">
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800">
+      <div className="rounded-[32px] bg-[#F8F9FA] border border-slate-300/60 p-8 shadow-sm">
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
           <div className="flex items-center gap-2.5">
-            <Shield className="w-4 h-4 text-red-400" />
-            <h3 className="text-sm font-semibold text-white tracking-wide uppercase font-mono">
+            <Shield className="w-4 h-4 text-emerald-600" />
+            <h3 className="text-sm font-semibold text-slate-900 tracking-wide uppercase font-mono">
               Active Governance & Session Parameters
             </h3>
           </div>
-          <span className="text-xs font-mono text-zinc-400">
+          <span className="text-xs font-mono text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
             Immutable Audit Active
           </span>
         </div>
@@ -218,75 +218,75 @@ export default function OverviewDashboard({ onNavigate }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Workspace Partition */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-zinc-800 space-y-1.5">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 block">
+          <div className="p-5 rounded-2xl bg-white border border-slate-300/60 space-y-1.5 shadow-2xs">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 block font-semibold">
               Cryptographic Tenant
             </span>
             <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-red-400" />
-              <span className="font-semibold text-sm text-white font-mono truncate">
+              <Building2 className="w-4 h-4 text-emerald-600" />
+              <span className="font-semibold text-sm text-slate-900 font-mono truncate">
                 {tenantId}
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400 pt-1 leading-relaxed">
+            <p className="text-[11px] text-slate-500 pt-1 leading-relaxed">
               Strict vector partition: Zero cross-tenant document exposure.
             </p>
           </div>
 
           {/* Assigned Security Role */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-zinc-800 space-y-1.5">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 block">
+          <div className="p-5 rounded-2xl bg-white border border-slate-300/60 space-y-1.5 shadow-2xs">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 block font-semibold">
               Security Role Clearance
             </span>
             <div className="flex items-center gap-2">
               <span
                 className={`font-semibold font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full text-xs border ${
                   activeRole?.toLowerCase() === 'admin'
-                    ? 'bg-red-950/80 text-red-300 border-red-800/80'
+                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                     : activeRole?.toLowerCase() === 'hr'
-                    ? 'bg-rose-950/60 text-rose-300 border-rose-800/60'
-                    : 'bg-zinc-900 text-zinc-300 border-zinc-700'
+                    ? 'bg-teal-50 text-teal-700 border-teal-200'
+                    : 'bg-slate-100 text-slate-700 border-slate-200'
                 }`}
               >
                 {activeRole}
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400 pt-1 leading-relaxed line-clamp-2">
+            <p className="text-[11px] text-slate-500 pt-1 leading-relaxed line-clamp-2">
               {roleDescription}
             </p>
           </div>
 
           {/* User Session */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-zinc-800 space-y-1.5">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 block">
+          <div className="p-5 rounded-2xl bg-white border border-slate-300/60 space-y-1.5 shadow-2xs">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 block font-semibold">
               Session User Identity
             </span>
             <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-red-400" />
-              <span className="font-semibold text-sm text-white font-mono truncate">
+              <User className="w-4 h-4 text-emerald-600" />
+              <span className="font-semibold text-sm text-slate-900 font-mono truncate">
                 {userId}
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400 pt-1 leading-relaxed">
+            <p className="text-[11px] text-slate-500 pt-1 leading-relaxed">
               All queries and file activities are permanently audit-logged.
             </p>
           </div>
 
           {/* Vector Engine Health */}
-          <div className="p-5 rounded-2xl bg-white/[0.02] border border-zinc-800 space-y-1.5">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 block">
+          <div className="p-5 rounded-2xl bg-white border border-slate-300/60 space-y-1.5 shadow-2xs">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 block font-semibold">
               Qdrant Vector Cluster
             </span>
             <div className="flex items-center gap-2">
               <span className={`w-2 h-2 rounded-full ${isHealthy ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-              <span className="font-semibold text-sm text-white">
+              <span className="font-semibold text-sm text-slate-900">
                 {isHealthy ? 'Cluster Active' : 'Checking Cluster'}
               </span>
-              <span className="text-[10px] font-mono text-zinc-400 ml-auto">
+              <span className="text-[10px] font-mono text-slate-500 ml-auto font-medium">
                 384-DIM
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400 pt-1 font-mono truncate">
+            <p className="text-[11px] text-slate-500 pt-1 font-mono truncate">
               {backendHealth.embedding_model || 'all-MiniLM-L6-v2'}
             </p>
           </div>

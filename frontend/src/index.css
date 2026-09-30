@@ -5,24 +5,39 @@
 @layer base {
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #ECEEF2;
+    color: #0F172A;
   }
 }
 
-/* Custom scrollbars for dark mode */
+/* Custom scrollbars for clean eye-friendly mode */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: #E2E8F0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #991b1b;
+  background: #94A3B8;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #E2E8F0;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
 }

@@ -155,25 +155,25 @@ Remote work is supported with prior team lead notification.`;
     <div className="max-w-4xl mx-auto space-y-6">
       
       {/* Upload Form Card */}
-      <div className="bg-[#09090b]/90 rounded-[28px] border border-zinc-800 shadow-2xl p-6 sm:p-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-5 border-b border-zinc-800 gap-3">
+      <div className="bg-[#F8F9FA] rounded-[28px] border border-slate-300/60 shadow-md p-6 sm:p-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-5 border-b border-slate-200 gap-3">
           <div>
-            <h2 className="text-sm sm:text-base font-semibold text-white">Document Ingestion & RBAC Tagging</h2>
-            <p className="text-xs text-zinc-400 mt-0.5">
+            <h2 className="text-sm sm:text-base font-semibold text-slate-900">Document Ingestion & RBAC Tagging</h2>
+            <p className="text-xs text-slate-500 mt-0.5">
               Upload PDF or plain text files tagged with strict tenant isolation and role permissions.
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => loadSampleDocument('admin')}
-              className="px-2.5 py-1 rounded-md bg-zinc-900 hover:bg-zinc-800 text-xs font-medium text-zinc-300 border border-zinc-800 transition-colors cursor-pointer"
+              className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-700 border border-slate-200 transition-colors cursor-pointer"
               title="Load demo admin document"
             >
               Demo Admin Doc
             </button>
             <button
               onClick={() => loadSampleDocument('general')}
-              className="px-2.5 py-1 rounded-md bg-zinc-900 hover:bg-zinc-800 text-xs font-medium text-zinc-300 border border-zinc-800 transition-colors cursor-pointer"
+              className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-700 border border-slate-200 transition-colors cursor-pointer"
               title="Load demo staff document"
             >
               Demo Staff Doc
@@ -190,10 +190,10 @@ Remote work is supported with prior team lead notification.`;
             onDrop={handleDrop}
             className={`relative border border-dashed rounded-2xl p-6 sm:p-8 text-center transition-all ${
               isDragging
-                ? 'border-red-500 bg-red-950/30'
+                ? 'border-emerald-500 bg-emerald-50/60'
                 : selectedFile
-                ? 'border-red-800/60 bg-red-950/15'
-                : 'border-zinc-800 hover:border-zinc-700 bg-black/60'
+                ? 'border-emerald-400/80 bg-emerald-50/30'
+                : 'border-slate-300 hover:border-emerald-500 bg-slate-50/60'
             }`}
           >
             <input
@@ -206,27 +206,27 @@ Remote work is supported with prior team lead notification.`;
 
             {selectedFile ? (
               <div className="flex flex-col items-center justify-center space-y-1.5">
-                <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-800/50 text-red-400">
+                <div className="p-2.5 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-700 shadow-xs">
                   <FileCheck className="w-6 h-6" />
                 </div>
-                <div className="text-sm font-semibold text-zinc-100">{selectedFile.name}</div>
-                <div className="text-xs text-zinc-400 font-mono">
+                <div className="text-sm font-semibold text-slate-900">{selectedFile.name}</div>
+                <div className="text-xs text-slate-500 font-mono">
                   {(selectedFile.size / 1024).toFixed(1)} KB • {selectedFile.type || 'text/plain'}
                 </div>
-                <div className="text-[11px] text-zinc-500 pt-1">
+                <div className="text-[11px] text-slate-400 pt-1 font-medium">
                   Click or drag another file to replace
                 </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center space-y-1.5">
-                <div className="p-2.5 rounded-xl bg-red-950/40 border border-red-800/40 text-red-400">
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 shadow-xs">
                   <UploadCloud className="w-6 h-6" />
                 </div>
-                <div className="text-xs sm:text-sm font-medium text-zinc-200">
-                  Drag & drop your <span className="text-red-300 font-semibold font-mono">.pdf</span> or{' '}
-                  <span className="text-red-300 font-semibold font-mono">.txt</span> file here
+                <div className="text-xs sm:text-sm font-medium text-slate-700">
+                  Drag & drop your <span className="text-emerald-700 font-semibold font-mono">.pdf</span> or{' '}
+                  <span className="text-emerald-700 font-semibold font-mono">.txt</span> file here
                 </div>
-                <p className="text-[11px] text-zinc-500">or browse from your local disk</p>
+                <p className="text-[11px] text-slate-400">or browse from your local disk</p>
               </div>
             )}
           </div>
@@ -236,8 +236,8 @@ Remote work is supported with prior team lead notification.`;
             
             {/* Target Tenant ID */}
             <div>
-              <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <Building className="w-3.5 h-3.5 text-red-400" />
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <Building className="w-3.5 h-3.5 text-emerald-600" />
                 Target Tenant ID
               </label>
               <input
@@ -245,17 +245,17 @@ Remote work is supported with prior team lead notification.`;
                 value={targetTenant}
                 onChange={(e) => setTargetTenant(e.target.value)}
                 placeholder="e.g. company_a"
-                className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 focus:ring-1 focus:ring-red-500/40 text-xs sm:text-sm text-zinc-200 rounded-xl px-3.5 py-2.5 outline-none font-mono transition-colors"
+                className="w-full bg-slate-50 border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/40 text-xs sm:text-sm text-slate-900 rounded-xl px-3.5 py-2.5 outline-none font-mono transition-colors shadow-xs"
               />
-              <p className="text-[11px] text-zinc-500 mt-1">
+              <p className="text-[11px] text-slate-500 mt-1">
                 Vectors will be isolated and searchable only by this tenant.
               </p>
             </div>
 
             {/* Allowed Roles Multi-Select */}
             <div>
-              <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <Shield className="w-3.5 h-3.5 text-red-400" />
+              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <Shield className="w-3.5 h-3.5 text-emerald-600" />
                 Permitted Roles on Document
               </label>
               <div className="flex flex-wrap gap-1.5 pt-0.5">
@@ -265,24 +265,24 @@ Remote work is supported with prior team lead notification.`;
                     <div
                       key={role}
                       onClick={() => toggleRoleSelection(role)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all select-none ${
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold cursor-pointer transition-all select-none shadow-2xs ${
                         isChecked
-                          ? 'bg-red-950/60 border-red-800 text-red-200 shadow-sm shadow-red-950/30'
-                          : 'bg-black/60 border-zinc-800 text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
+                          ? 'bg-emerald-50 border-emerald-300 text-emerald-900'
+                          : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300'
                       }`}
                     >
                       <input
                         type="checkbox"
                         checked={isChecked}
                         readOnly
-                        className="rounded bg-black border-zinc-700 text-red-600 focus:ring-0 pointer-events-none accent-red-600"
+                        className="rounded bg-white border-slate-300 text-emerald-600 focus:ring-0 pointer-events-none accent-emerald-600"
                       />
                       <span className="uppercase">{role}</span>
                     </div>
                   );
                 })}
               </div>
-              <p className="text-[11px] text-zinc-500 mt-1">
+              <p className="text-[11px] text-slate-500 mt-1">
                 Users holding any of these roles can access chunks from this doc.
               </p>
             </div>
@@ -294,7 +294,7 @@ Remote work is supported with prior team lead notification.`;
             <button
               type="submit"
               disabled={uploading || !selectedFile}
-              className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 disabled:opacity-40 disabled:hover:from-red-600 text-white font-semibold text-xs sm:text-sm transition-all shadow-lg shadow-red-950/40 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 disabled:opacity-40 text-white font-semibold text-xs sm:text-sm transition-all shadow-md shadow-emerald-700/20 cursor-pointer"
             >
               {uploading ? (
                 <>
@@ -315,36 +315,36 @@ Remote work is supported with prior team lead notification.`;
 
       {/* Ingestion Success Card */}
       {lastUploaded && (
-        <div className="bg-[#09090b]/90 rounded-2xl border border-zinc-800 p-5 shadow-lg">
+        <div className="bg-[#F8F9FA] rounded-2xl border border-emerald-200/80 p-5 shadow-sm">
           <div className="flex items-start gap-3">
-            <div className="p-2 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-emerald-400 shrink-0">
+            <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 shrink-0">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div className="flex-1 space-y-1.5">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-zinc-100">
+                <h3 className="text-sm font-semibold text-slate-900">
                   Ingestion Successful & Indexed
                 </h3>
-                <span className="px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-800/40 text-emerald-400 font-mono text-[11px]">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-mono text-[11px] font-semibold">
                   {lastUploaded.total_chunks} Chunks
                 </span>
               </div>
-              <p className="text-xs text-zinc-400">
-                Document successfully partitioned, embedded (384-d), and committed to collection <span className="font-mono text-zinc-200">enterprise_tenant_chunks</span>.
+              <p className="text-xs text-slate-600">
+                Document successfully partitioned, embedded (384-d), and committed to collection <span className="font-mono text-slate-800 font-semibold">enterprise_tenant_chunks</span>.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2.5 border-t border-zinc-800 text-xs font-mono">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2.5 border-t border-slate-100 text-xs font-mono">
                 <div>
-                  <span className="text-zinc-500 block text-[10px] uppercase font-sans">Filename</span>
-                  <span className="text-zinc-200 truncate block">{lastUploaded.doc_name}</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-sans font-semibold">Filename</span>
+                  <span className="text-slate-800 truncate block font-medium">{lastUploaded.doc_name}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px] uppercase font-sans">Tenant</span>
-                  <span className="text-zinc-200 block">{lastUploaded.tenant_id}</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-sans font-semibold">Tenant</span>
+                  <span className="text-slate-800 block font-medium">{lastUploaded.tenant_id}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px] uppercase font-sans">Permitted Roles</span>
-                  <span className="text-zinc-200 block">[{lastUploaded.allowed_roles.join(', ')}]</span>
+                  <span className="text-slate-400 block text-[10px] uppercase font-sans font-semibold">Permitted Roles</span>
+                  <span className="text-slate-800 block font-medium">[{lastUploaded.allowed_roles.join(', ')}]</span>
                 </div>
               </div>
             </div>

@@ -143,7 +143,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
   const isDocsActive = activeView === 'upload' || activeView === 'manage_docs';
 
   return (
-    <header className="sticky top-0 z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-zinc-900 px-6 sm:px-8 py-3.5 transition-all">
+    <header className="sticky top-0 z-50 bg-[#F8F9FA]/90 backdrop-blur-xl border-b border-slate-300/60 px-6 sm:px-8 py-3.5 transition-all shadow-xs">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
         {/* Left Side: Brand + Left-Aligned Navigation Links */}
@@ -158,18 +158,18 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                 src={logoUrl} 
                 alt={displayBrand} 
                 onError={() => setLogoLoadError(true)}
-                className="w-9 h-9 rounded-xl object-contain border border-zinc-800 p-0.5 bg-black/60 shadow-sm shrink-0 group-hover:scale-105 transition-transform" 
+                className="w-9 h-9 rounded-xl object-contain border border-slate-200 p-0.5 bg-slate-50 shadow-xs shrink-0 group-hover:scale-105 transition-transform" 
               />
             ) : (
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-red-900 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform shrink-0">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-800 flex items-center justify-center text-white font-bold text-xs shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform shrink-0">
                 {displayBrand.charAt(0).toUpperCase()}
               </div>
             )}
             <div>
-              <span className="font-bold text-base tracking-tight text-white block leading-tight group-hover:text-red-300 transition-colors">
+              <span className="font-bold text-base tracking-tight text-slate-900 block leading-tight group-hover:text-emerald-700 transition-colors">
                 {displayBrand}
               </span>
-              <span className="text-[10px] tracking-wider uppercase font-mono text-zinc-400 block">
+              <span className="text-[10px] tracking-wider uppercase font-mono text-slate-400 block font-medium">
                 Enterprise Portal
               </span>
             </div>
@@ -182,12 +182,12 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
               type="button"
               onClick={() => onSelectView('overview')}
               className={`relative py-1 text-sm font-medium transition-colors cursor-pointer ${
-                activeView === 'overview' ? 'text-white' : 'text-zinc-400 hover:text-white'
+                activeView === 'overview' ? 'text-emerald-700 font-semibold' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <span>Overview</span>
               {activeView === 'overview' && (
-                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
               )}
             </button>
 
@@ -197,38 +197,38 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                 type="button"
                 onClick={() => setIsDocsOpen((prev) => !prev)}
                 className={`relative py-1 text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
-                  isDocsActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                  isDocsActive ? 'text-emerald-700 font-semibold' : 'text-slate-600 hover:text-slate-900'
                 }`}
                 aria-expanded={isDocsOpen}
               >
                 <span>Documents</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isDocsOpen ? 'rotate-180' : ''}`} />
                 {isDocsActive && (
-                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
                 )}
               </button>
 
               {/* Documents Dropdown Popover */}
               {isDocsOpen && (
-                <div className="absolute left-0 mt-3 w-60 rounded-xl bg-[#0B0F17] border border-white/10 shadow-2xl p-1.5 z-[60] animate-in fade-in zoom-in-95 duration-100">
+                <div className="absolute left-0 mt-3 w-60 rounded-2xl bg-white border border-slate-200 shadow-xl p-1.5 z-[60] animate-in fade-in zoom-in-95 duration-100">
                   <button
                     type="button"
                     onClick={() => {
                       onSelectView('upload');
                       setIsDocsOpen(false);
                     }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition-colors text-left ${
                       activeView === 'upload'
-                        ? 'bg-red-950/40 text-red-200 border border-red-900/30'
-                        : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
+                        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                     }`}
                   >
-                    <div className="p-1.5 rounded-lg bg-red-950/60 border border-red-800/40 text-red-400 shrink-0">
+                    <div className="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-600 shrink-0">
                       <UploadCloud className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <div className="font-semibold text-white">Upload Document</div>
-                      <div className="text-[10px] text-zinc-400 font-normal">File upload & RBAC tagging</div>
+                      <div className="font-semibold text-slate-900">Upload Document</div>
+                      <div className="text-[10px] text-slate-500 font-normal">File upload & RBAC tagging</div>
                     </div>
                   </button>
 
@@ -238,18 +238,18 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                       onSelectView('manage_docs');
                       setIsDocsOpen(false);
                     }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition-colors text-left ${
                       activeView === 'manage_docs'
-                        ? 'bg-red-950/40 text-red-200 border border-red-900/30'
-                        : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
+                        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                        : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                     }`}
                   >
-                    <div className="p-1.5 rounded-lg bg-rose-950/60 border border-rose-800/40 text-rose-400 shrink-0">
+                    <div className="p-1.5 rounded-lg bg-teal-50 border border-teal-200 text-teal-600 shrink-0">
                       <FileText className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <div className="font-semibold text-white">Uploaded Documents</div>
-                      <div className="text-[10px] text-zinc-400 font-normal">Chunk records & permissions</div>
+                      <div className="font-semibold text-slate-900">Uploaded Documents</div>
+                      <div className="text-[10px] text-slate-500 font-normal">Chunk records & permissions</div>
                     </div>
                   </button>
                 </div>
@@ -261,12 +261,12 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
               type="button"
               onClick={() => onSelectView('audit')}
               className={`relative py-1 text-sm font-medium transition-colors cursor-pointer ${
-                activeView === 'audit' ? 'text-white' : 'text-zinc-400 hover:text-white'
+                activeView === 'audit' ? 'text-emerald-700 font-semibold' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <span>Audit Trail</span>
               {activeView === 'audit' && (
-                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
               )}
             </button>
           </nav>
@@ -275,24 +275,24 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
         {/* Right Section: Pill Action + Profile Controls */}
         <div className="ml-auto flex items-center gap-3 sm:gap-4">
           
-          {/* Center-Right Pill Action: "✨ Ask Nova" */}
+          {/* Center-Right Pill Action: "✨ Ask Nova" (Custom Royal/Electric Blue Branding) */}
           <button
             type="button"
             onClick={() => onSelectView('query')}
-            className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 cursor-pointer shadow-sm ${
+            className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 cursor-pointer shadow-xs ${
               activeView === 'query'
-                ? 'bg-red-950/90 border border-red-500 text-red-100 shadow-[0_0_15px_rgba(239,68,68,0.35)]'
-                : 'bg-zinc-950/80 border border-red-600/40 text-red-300 hover:border-red-400 hover:text-white shadow-sm shadow-red-950/30'
+                ? 'bg-blue-600 border border-blue-600 text-white shadow-md shadow-blue-500/20'
+                : 'bg-blue-50/80 border border-blue-200 text-blue-700 hover:bg-blue-100 hover:border-blue-300'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-red-400 animate-pulse" />
+            <Sparkles className={`w-3.5 h-3.5 animate-pulse ${activeView === 'query' ? 'text-white' : 'text-blue-600'}`} />
             <span>Ask Nova</span>
           </button>
 
           {/* Server Health Subtle Ping Dot */}
           <div
             onClick={refreshHealth}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/20 transition-colors cursor-pointer text-xs"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100/80 border border-slate-200 hover:border-slate-300 hover:bg-slate-200/60 transition-colors cursor-pointer text-xs"
             title={isHealthy ? 'Vector Engine & API Online' : isBackendUp ? 'API Online / DB Degraded' : 'Offline'}
           >
             <span className="relative flex h-2 w-2">
@@ -303,7 +303,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                 isHealthy ? 'bg-emerald-500' : isBackendUp ? 'bg-amber-500' : 'bg-rose-500'
               }`} />
             </span>
-            <span className="text-[10px] font-mono text-zinc-400 hidden lg:inline">
+            <span className="text-[10px] font-mono text-slate-500 hidden lg:inline font-medium">
               {isHealthy ? 'ONLINE' : 'STATUS'}
             </span>
           </div>
@@ -313,25 +313,25 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
             <button
               type="button"
               onClick={() => setIsProfileOpen((prev) => !prev)}
-              className="flex items-center gap-2 p-1 pl-1.5 pr-2.5 rounded-full bg-white/[0.04] border border-zinc-800 hover:border-zinc-700 hover:bg-white/[0.08] transition-all cursor-pointer"
+              className="flex items-center gap-2 p-1 pl-1.5 pr-2.5 rounded-full bg-slate-100/80 border border-slate-200 hover:border-slate-300 hover:bg-slate-200/60 transition-all cursor-pointer shadow-xs"
               aria-expanded={isProfileOpen}
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-red-700 via-rose-700 to-red-950 text-white font-bold text-xs flex items-center justify-center shadow-inner">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-800 text-white font-bold text-xs flex items-center justify-center shadow-inner">
                 {userInitials}
               </div>
-              <span className="text-xs font-mono text-zinc-300 max-w-[80px] truncate hidden sm:inline">
+              <span className="text-xs font-mono text-slate-700 font-medium max-w-[80px] truncate hidden sm:inline">
                 {userId}
               </span>
-              <ChevronDown className={`w-3 h-3 text-zinc-400 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3 h-3 text-slate-500 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {/* Profile Dropdown Menu */}
             {isProfileOpen && (
-              <div className="absolute right-0 mt-2.5 w-72 rounded-2xl bg-[#0B0F17] border border-white/10 shadow-2xl p-4 z-[60] animate-in fade-in zoom-in-95 duration-150">
+              <div className="absolute right-0 mt-2.5 w-72 rounded-2xl bg-white border border-slate-200 shadow-2xl p-4 z-[60] animate-in fade-in zoom-in-95 duration-150">
                 
                 {/* User ID Header & Inline Edit */}
-                <div className="pb-3 border-b border-zinc-800">
-                  <div className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 mb-1">
+                <div className="pb-3 border-b border-slate-100">
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400 mb-1 font-semibold">
                     Authenticated User
                   </div>
                   {isEditingUser ? (
@@ -341,24 +341,24 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                         value={customUserVal}
                         onChange={(e) => setCustomUserVal(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleUserSave()}
-                        className="flex-1 bg-black/60 border border-zinc-700 rounded-lg px-2.5 py-1 text-xs text-white font-mono outline-none focus:border-red-500"
+                        className="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-900 font-mono outline-none focus:border-emerald-500"
                         autoFocus
                       />
                       <button
                         type="button"
                         onClick={handleUserSave}
-                        className="p-1 rounded-lg bg-red-700 hover:bg-red-600 text-white text-xs"
+                        className="p-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs cursor-pointer"
                       >
                         <Check className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   ) : (
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-white font-mono">{userId}</span>
+                      <span className="text-xs font-semibold text-slate-900 font-mono">{userId}</span>
                       <button
                         type="button"
                         onClick={() => setIsEditingUser(true)}
-                        className="text-[11px] text-red-400 hover:text-red-300 flex items-center gap-1"
+                        className="text-[11px] text-emerald-600 hover:text-emerald-700 font-medium flex items-center gap-1 cursor-pointer"
                       >
                         <Edit3 className="w-3 h-3" />
                         <span>Edit</span>
@@ -368,15 +368,15 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                 </div>
 
                 {/* Role Pill */}
-                <div className="py-3 border-b border-zinc-800 flex items-center justify-between">
-                  <span className="text-xs text-zinc-400">Security Clearance</span>
+                <div className="py-3 border-b border-slate-100 flex items-center justify-between">
+                  <span className="text-xs text-slate-500 font-medium">Security Clearance</span>
                   <span
                     className={`font-semibold font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full text-[10px] border ${
                       activeRole?.toLowerCase() === 'admin'
-                        ? 'bg-red-950/80 text-red-300 border-red-800/80'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
                         : activeRole?.toLowerCase() === 'hr'
-                        ? 'bg-rose-950/60 text-rose-300 border-rose-800/60'
-                        : 'bg-zinc-900 text-zinc-300 border-zinc-700'
+                        ? 'bg-teal-50 text-teal-700 border-teal-200'
+                        : 'bg-slate-100 text-slate-700 border-slate-200'
                     }`}
                   >
                     {activeRole}
@@ -384,24 +384,24 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                 </div>
 
                 {/* Workspace ID */}
-                <div className="py-2.5 border-b border-zinc-800 flex items-center justify-between text-xs">
-                  <span className="text-zinc-400">Workspace</span>
-                  <span className="font-mono text-zinc-200">{tenantId}</span>
+                <div className="py-2.5 border-b border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-slate-500 font-medium">Workspace</span>
+                  <span className="font-mono text-slate-800 font-medium">{tenantId}</span>
                 </div>
 
                 {/* Admin-Only Workspace Settings Button */}
                 {activeRole?.toLowerCase() === 'admin' && (
-                  <div className="py-2.5 border-b border-zinc-800">
+                  <div className="py-2.5 border-b border-slate-100">
                     <button
                       type="button"
                       onClick={handleOpenSettings}
-                      className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-gradient-to-r from-red-950/40 to-zinc-900/60 hover:from-red-900/60 hover:to-zinc-900 border border-red-800/40 hover:border-red-600/60 text-xs font-medium text-red-200 hover:text-white transition-all cursor-pointer shadow-sm group"
+                      className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 border border-emerald-200 text-xs font-medium text-emerald-800 transition-all cursor-pointer shadow-xs group"
                     >
                       <div className="flex items-center gap-2">
-                        <Settings className="w-3.5 h-3.5 text-red-400 group-hover:rotate-45 transition-transform duration-300" />
-                        <span>Workspace Settings</span>
+                        <Settings className="w-3.5 h-3.5 text-emerald-600 group-hover:rotate-45 transition-transform duration-300" />
+                        <span className="font-semibold">Workspace Settings</span>
                       </div>
-                      <span className="text-[10px] font-mono uppercase bg-red-900/50 text-red-300 px-1.5 py-0.5 rounded border border-red-700/40">
+                      <span className="text-[10px] font-mono uppercase bg-emerald-200/60 text-emerald-800 px-1.5 py-0.5 rounded border border-emerald-300/60 font-semibold">
                         Admin
                       </span>
                     </button>
@@ -409,8 +409,8 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                 )}
 
                 {/* Mobile Navigation Links inside dropdown */}
-                <div className="md:hidden py-2.5 border-b border-zinc-800 space-y-1">
-                  <div className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 mb-1">
+                <div className="md:hidden py-2.5 border-b border-slate-100 space-y-1">
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400 mb-1 font-semibold">
                     Navigation
                   </div>
                   <button
@@ -419,7 +419,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                       onSelectView('overview');
                       setIsProfileOpen(false);
                     }}
-                    className="w-full text-left py-1 text-xs text-zinc-300 hover:text-white"
+                    className="w-full text-left py-1 text-xs text-slate-700 hover:text-emerald-700 font-medium cursor-pointer"
                   >
                     Overview
                   </button>
@@ -429,7 +429,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                       onSelectView('upload');
                       setIsProfileOpen(false);
                     }}
-                    className="w-full text-left py-1 text-xs text-zinc-300 hover:text-white"
+                    className="w-full text-left py-1 text-xs text-slate-700 hover:text-emerald-700 font-medium cursor-pointer"
                   >
                     Upload Document
                   </button>
@@ -439,7 +439,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                       onSelectView('manage_docs');
                       setIsProfileOpen(false);
                     }}
-                    className="w-full text-left py-1 text-xs text-zinc-300 hover:text-white"
+                    className="w-full text-left py-1 text-xs text-slate-700 hover:text-emerald-700 font-medium cursor-pointer"
                   >
                     Uploaded Documents
                   </button>
@@ -449,7 +449,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                       onSelectView('audit');
                       setIsProfileOpen(false);
                     }}
-                    className="w-full text-left py-1 text-xs text-zinc-300 hover:text-white"
+                    className="w-full text-left py-1 text-xs text-slate-700 hover:text-emerald-700 font-medium cursor-pointer"
                   >
                     Audit Trail
                   </button>
@@ -463,7 +463,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                       setIsProfileOpen(false);
                       logoutWorkspace();
                     }}
-                    className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-rose-950/30 border border-white/5 hover:border-rose-900/40 text-xs font-medium text-zinc-300 hover:text-rose-300 transition-all cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 text-xs font-medium text-slate-700 hover:text-rose-700 transition-all cursor-pointer"
                   >
                     <LogOut className="w-3.5 h-3.5" />
                     <span>Switch Company / Logout</span>
@@ -478,31 +478,31 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
 
       </div>
 
-      {/* Glassmorphism Workspace Settings Modal (Admin Only - Rendered into body via Portal to prevent header backdrop-filter trapping) */}
+      {/* Workspace Settings Modal (Admin Only - Rendered into body via Portal) */}
       {isSettingsOpen && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200"
           onClick={() => setIsSettingsOpen(false)}
         >
           <div 
-            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#0B0F17] border border-white/10 rounded-2xl p-6 shadow-[0_0_60px_rgba(0,0,0,0.9)] text-left animate-in zoom-in-95 duration-150 custom-scrollbar"
+            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white border border-slate-200 rounded-2xl p-6 shadow-2xl text-left animate-in zoom-in-95 duration-150 custom-scrollbar"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Ambient Lighting Gradients */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-700/10 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20" />
 
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 mb-5 border-b border-zinc-800 relative z-10">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200 relative z-10">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-red-950/60 border border-red-700/40 text-red-400 shadow-inner">
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 shadow-xs">
                   <Settings className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-white tracking-tight">
+                  <h3 className="text-base font-semibold text-slate-900 tracking-tight">
                     Workspace Settings
                   </h3>
-                  <p className="text-xs text-zinc-400">
+                  <p className="text-xs text-slate-500">
                     Customize company branding, navigation logo, and portal title
                   </p>
                 </div>
@@ -510,7 +510,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
               <button
                 type="button"
                 onClick={() => setIsSettingsOpen(false)}
-                className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
                 title="Close"
               >
                 <X className="w-4 h-4" />
@@ -520,38 +520,38 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
             <form onSubmit={handleSaveSettings} className="space-y-5 relative z-10">
               {/* Live Preview Card */}
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-2 font-semibold">
                   Live Navbar Preview
                 </label>
-                <div className="p-3.5 rounded-xl bg-black/60 border border-zinc-800 flex items-center justify-between">
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {formLogoUrl && !previewError ? (
                       <img
                         src={formLogoUrl}
                         alt="Preview"
                         onError={() => setPreviewError(true)}
-                        className="w-9 h-9 rounded-xl object-contain border border-zinc-800 p-0.5 bg-black/50 shadow-sm shrink-0"
+                        className="w-9 h-9 rounded-xl object-contain border border-slate-200 p-0.5 bg-white shadow-xs shrink-0"
                       />
                     ) : (
-                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-red-900 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-red-600/20 shrink-0">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-800 flex items-center justify-center text-white font-bold text-xs shadow-md shadow-emerald-600/20 shrink-0">
                         {(formCompanyName || tenantId || 'T').charAt(0).toUpperCase()}
                       </div>
                     )}
                     <div>
-                      <span className="font-bold text-sm tracking-tight text-white block leading-tight">
+                      <span className="font-bold text-sm tracking-tight text-slate-900 block leading-tight">
                         {formCompanyName || tenantId || 'Workspace Name'}
                       </span>
-                      <span className="text-[10px] tracking-wider uppercase font-mono text-zinc-400 block">
+                      <span className="text-[10px] tracking-wider uppercase font-mono text-slate-400 block font-medium">
                         Enterprise Portal
                       </span>
                     </div>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-800/40">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 font-medium">
                     Real-time Preview
                   </span>
                 </div>
                 {previewError && formLogoUrl && (
-                  <p className="text-[11px] text-amber-400 mt-1.5">
+                  <p className="text-[11px] text-amber-600 mt-1.5">
                     ⚠️ Image could not be loaded from this URL. Gradient initial fallback will be displayed.
                   </p>
                 )}
@@ -559,11 +559,11 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
 
               {/* Company Name Field */}
               <div>
-                <label className="block text-xs font-medium text-zinc-300 mb-1.5">
+                <label className="block text-xs font-medium text-slate-700 mb-1.5">
                   Company Name
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                     <Building2 className="w-4 h-4" />
                   </div>
                   <input
@@ -571,10 +571,10 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                     value={formCompanyName}
                     onChange={(e) => setFormCompanyName(e.target.value)}
                     placeholder="e.g. Acme Corporation, TechNova Labs"
-                    className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 focus:ring-1 focus:ring-red-500/50 rounded-xl pl-9 pr-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none transition-all shadow-inner"
+                    className="w-full bg-slate-50 border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/40 rounded-xl pl-9 pr-3.5 py-2.5 text-xs text-slate-900 placeholder-slate-400 outline-none transition-all shadow-xs"
                   />
                 </div>
-                <p className="text-[11px] text-zinc-500 mt-1">
+                <p className="text-[11px] text-slate-500 mt-1">
                   Displayed on the top-left brand header and portal navigation.
                 </p>
               </div>
@@ -582,7 +582,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
               {/* Company Logo Field (Direct File Upload & URL Option) */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-medium text-zinc-300">
+                  <label className="text-xs font-medium text-slate-700">
                     Company Logo
                   </label>
                   {formLogoUrl && (
@@ -593,7 +593,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                         setPreviewError(false);
                         if (fileInputRef.current) fileInputRef.current.value = '';
                       }}
-                      className="text-[11px] text-rose-400 hover:text-rose-300 flex items-center gap-1 cursor-pointer transition-colors"
+                      className="text-[11px] text-rose-600 hover:text-rose-700 font-medium flex items-center gap-1 cursor-pointer transition-colors"
                     >
                       <Trash2 className="w-3 h-3" />
                       <span>Remove Logo</span>
@@ -616,17 +616,17 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3.5 rounded-xl bg-red-950/40 hover:bg-red-900/60 border border-red-800/50 hover:border-red-600 text-xs font-medium text-red-200 hover:text-white transition-all cursor-pointer shadow-sm group"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3.5 rounded-xl bg-emerald-50 hover:bg-emerald-100/70 border border-emerald-200 hover:border-emerald-300 text-xs font-semibold text-emerald-800 transition-all cursor-pointer shadow-xs group"
                     >
-                      <Upload className="w-3.5 h-3.5 text-red-400 group-hover:-translate-y-0.5 transition-transform" />
+                      <Upload className="w-3.5 h-3.5 text-emerald-600 group-hover:-translate-y-0.5 transition-transform" />
                       <span>Upload Logo Image</span>
-                      <span className="text-[10px] text-red-400/70 font-mono hidden sm:inline">(.png, .jpg, .svg, .webp)</span>
+                      <span className="text-[10px] text-emerald-600/80 font-mono hidden sm:inline">(.png, .jpg, .svg, .webp)</span>
                     </button>
                   </div>
 
                   {/* Alternative URL input */}
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                       <ImageIcon className="w-4 h-4" />
                     </div>
                     <input
@@ -637,28 +637,28 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
                         setPreviewError(false);
                       }}
                       placeholder="Or paste image URL (https://...)"
-                      className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 focus:ring-1 focus:ring-red-500/50 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-zinc-500 outline-none transition-all shadow-inner font-mono"
+                      className="w-full bg-slate-50 border border-slate-300 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/40 rounded-xl pl-9 pr-3.5 py-2 text-xs text-slate-900 placeholder-slate-400 outline-none transition-all shadow-xs font-mono"
                     />
                   </div>
                 </div>
 
-                <p className="text-[11px] text-zinc-500 mt-1.5">
+                <p className="text-[11px] text-slate-500 mt-1.5">
                   Upload an image from your computer or paste a direct URL. If removed, the colorful letter initial icon will be used.
                 </p>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-zinc-800">
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setIsSettingsOpen(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/5 border border-zinc-800 transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 shadow-lg shadow-red-950/40 transition-all cursor-pointer"
+                  className="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 shadow-md shadow-emerald-700/20 transition-all cursor-pointer"
                 >
                   Save Changes
                 </button>

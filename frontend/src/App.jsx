@@ -17,7 +17,7 @@ function Dashboard() {
   // If workspace is locked, require secret access code verification or registration
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#050507] text-zinc-100 selection:bg-red-600/30 selection:text-white">
+      <div className="min-h-screen flex flex-col bg-[#ECEEF2] text-slate-900 selection:bg-emerald-500/20 selection:text-emerald-900">
         <LockGateway />
         <ToastContainer />
       </div>
@@ -33,11 +33,11 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#050507] text-zinc-100 selection:bg-red-600/30 selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#ECEEF2] text-slate-900 selection:bg-emerald-500/20 selection:text-emerald-900 relative overflow-x-hidden">
       {/* Subtle ambient lighting & dot-matrix overlay */}
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] opacity-30 z-0" />
-      <div className="fixed -top-32 left-1/3 w-[600px] h-[600px] bg-red-950/25 rounded-full blur-[170px] pointer-events-none z-0" />
-      <div className="fixed top-1/2 -right-32 w-[500px] h-[500px] bg-rose-950/20 rounded-full blur-[160px] pointer-events-none z-0" />
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] opacity-50 z-0" />
+      <div className="fixed -top-32 left-1/3 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[170px] pointer-events-none z-0" />
+      <div className="fixed top-1/2 -right-32 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[160px] pointer-events-none z-0" />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar activeView={activeView} onSelectView={setActiveView} />
@@ -47,19 +47,19 @@ function Dashboard() {
         
         {/* Subtle Breadcrumb / Back Navigation Bar for Module Views */}
         {activeView !== 'overview' && (
-          <div className="flex items-center justify-between pb-4 border-b border-zinc-900">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-300/60">
             <button
               type="button"
               onClick={() => setActiveView('overview')}
-              className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-2 text-xs font-mono text-slate-600 hover:text-slate-900 transition-colors cursor-pointer group"
             >
-              <ArrowLeft className="w-3.5 h-3.5 text-zinc-500 group-hover:text-red-400 transform group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-600 transform group-hover:-translate-x-1 transition-transform" />
               <span>← Back to Overview</span>
             </button>
             
             <div className="flex items-center gap-2 text-xs font-mono">
-              <span className="hidden sm:inline text-zinc-500">Workspace /</span>
-              <span className="text-red-300 font-medium bg-red-950/40 px-3 py-1 rounded-full border border-red-900/40">
+              <span className="hidden sm:inline text-slate-400">Workspace /</span>
+              <span className="text-emerald-800 font-medium bg-emerald-50/80 px-3 py-1 rounded-full border border-emerald-200/80 shadow-xs">
                 {viewTitles[activeView] || activeView}
               </span>
             </div>

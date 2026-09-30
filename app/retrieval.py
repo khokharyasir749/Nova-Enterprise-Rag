@@ -66,27 +66,34 @@ def retrieve_context_chunks(
     )
 
     # 3. Query Qdrant with pre-filtering and score threshold
-    client = get_qdrant_client()
+    hits = []
     try:
-        response = client.query_points(
-            collection_name=settings.QDRANT_COLLECTION_NAME,
-            query=query_vector,
-            query_filter=security_filter,
-            limit=limit,
-            score_threshold=settings.SCORE_THRESHOLD,
-        )
-        hits = response.points
-    except AttributeError:
-        hits = client.search(
-            collection_name=settings.QDRANT_COLLECTION_NAME,
-            query_vector=query_vector,
-            query_filter=security_filter,
-            limit=limit,
-            score_threshold=settings.SCORE_THRESHOLD,
-        )
+        client = get_qdrant_client()
+        try:
+            response = client.query_points(
+                collection_name=settings.QDRANT_COLLECTION_NAME,
+                query=query_vector,
+                query_filter=security_filter,
+                limit=limit,
+                score_threshold=settings.SCORE_THRESHOLD,
+            )
+            hits = getattr(response, "points", response)
+        except (AttributeError, Exception) as q_err:
+            logger.debug(f"query_points fallback to search: {q_err}")
+            try:
+                hits = client.search(
+                    collection_name=settings.QDRANT_COLLECTION_NAME,
+                    query_vector=query_vector,
+                    query_filter=security_filter,
+                    limit=limit,
+                    score_threshold=settings.SCORE_THRESHOLD,
+                )
+            except Exception as search_err:
+                logger.error(f"Error querying Qdrant search points: {search_err}", exc_info=True)
+                hits = []
     except Exception as e:
-        logger.error(f"Error querying Qdrant: {e}", exc_info=True)
-        raise
+        logger.error(f"Vector retrieval error: {e}", exc_info=True)
+        hits = []
 
     # 4. Print retrieved points and similarity scores in console
     print(f"\n==================== [QDRANT RETRIEVAL DEBUG] ====================")

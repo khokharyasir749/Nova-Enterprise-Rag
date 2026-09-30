@@ -1,3 +1,4 @@
+import os
 import logging
 from typing import Optional, List, Dict, Any
 from qdrant_client import QdrantClient
@@ -15,15 +16,43 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 
 _qdrant_client: Optional[QdrantClient] = None
+_qdrant_mode: str = "uninitialized"
+
+
+def get_qdrant_mode() -> str:
+    """Return the active connection mode ('local_disk' or 'in_memory')."""
+    global _qdrant_mode
+    return _qdrant_mode
 
 
 def get_qdrant_client() -> QdrantClient:
-    """Return a singleton QdrantClient instance."""
-    global _qdrant_client
-    if _qdrant_client is None:
-        logger.info(f"Connecting to Qdrant at {settings.QDRANT_HOST}:{settings.QDRANT_PORT}...")
-        _qdrant_client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
-    return _qdrant_client
+    """
+    Return a singleton QdrantClient instance in embedded local disk mode.
+    Directly connects to local disk storage (path="qdrant_storage") without requiring Docker or port 6333.
+    """
+    global _qdrant_client, _qdrant_mode
+    if _qdrant_client is not None:
+        return _qdrant_client
+
+    # Resolve local embedded storage path
+    if settings.QDRANT_PATH:
+        storage_path = os.path.abspath(settings.QDRANT_PATH)
+    else:
+        storage_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "qdrant_storage")
+
+    try:
+        logger.info(f"Initializing embedded Qdrant local disk storage at '{storage_path}' (No Docker required)...")
+        _qdrant_client = QdrantClient(path=storage_path)
+        _qdrant_mode = "local_disk"
+        logger.info(f"Embedded Qdrant local disk storage initialized successfully at '{storage_path}'.")
+        return _qdrant_client
+    except Exception as e:
+        logger.error(f"Failed to initialize local Qdrant disk storage at '{storage_path}': {e}", exc_info=True)
+        # Fall back to in-memory mode if disk locking prevents initialization
+        logger.warning("Falling back to in-memory Qdrant client (:memory:)...")
+        _qdrant_client = QdrantClient(location=":memory:")
+        _qdrant_mode = "in_memory"
+        return _qdrant_client
 
 
 def ensure_collection_exists(client: Optional[QdrantClient] = None) -> None:
@@ -48,14 +77,17 @@ def ensure_collection_exists(client: Optional[QdrantClient] = None) -> None:
             f"Collection '{collection_name}' does not exist. Creating with "
             f"vector_size={settings.VECTOR_SIZE}, distance=Cosine..."
         )
-        client.create_collection(
-            collection_name=collection_name,
-            vectors_config=VectorParams(
-                size=settings.VECTOR_SIZE,
-                distance=Distance.COSINE
-            ),
-        )
-        logger.info(f"Collection '{collection_name}' created successfully.")
+        try:
+            client.create_collection(
+                collection_name=collection_name,
+                vectors_config=VectorParams(
+                    size=settings.VECTOR_SIZE,
+                    distance=Distance.COSINE
+                ),
+            )
+            logger.info(f"Collection '{collection_name}' created successfully.")
+        except Exception as c_err:
+            logger.warning(f"Collection creation notice: {c_err}")
 
         # Create payload indexes on tenant_id, allowed_roles, and doc_name
         for field in ["tenant_id", "allowed_roles", "doc_name"]:
@@ -67,7 +99,7 @@ def ensure_collection_exists(client: Optional[QdrantClient] = None) -> None:
                 )
                 logger.info(f"Payload index for '{field}' created.")
             except Exception as idx_err:
-                logger.warning(f"Could not create payload index for '{field}': {idx_err}")
+                logger.debug(f"Payload index info for '{field}': {idx_err}")
     else:
         logger.info(f"Collection '{collection_name}' already exists.")
         # Ensure doc_name payload index exists even on existing collection
