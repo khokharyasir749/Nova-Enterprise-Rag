@@ -1,0 +1,46 @@
+# Environment & Secrets
+.env
+.env.local
+*.env
+!.env.example
+!frontend/.env.example
+
+# Python & Virtual Environments
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Models & Weights (Downloaded at runtime)
+models/
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Local Qdrant Binary & Storage
+qdrant/
+qdrant_storage/
+
+# Runtime Audit Logs & Data
+audit_logs.jsonl
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,35 @@
+[
+  {
+    "tenant_id": "lonetex",
+    "name": "Lonetex",
+    "keys": {
+      "admin": "8899-admin",
+      "hr": "8899-hr",
+      "employee": "8899-emp"
+    },
+    "logo_url": "",
+    "created_at": "2026-09-30T07:39:15.576962+00:00"
+  },
+  {
+    "tenant_id": "apex_financial_technologies",
+    "name": "Apex Financial Technologies",
+    "keys": {
+      "admin": "apex-admin-sec99",
+      "hr": "apex-hr-sec88",
+      "employee": "apex-emp-sec77"
+    },
+    "logo_url": "",
+    "created_at": "2026-09-30T08:33:49.229426+00:00"
+  },
+  {
+    "tenant_id": "quantum_dynamics",
+    "name": "Quantum Dynamics",
+    "keys": {
+      "admin": "qd-admin-01",
+      "hr": "qd-hr-02",
+      "employee": "qd-emp-03"
+    },
+    "logo_url": "https://raw.githubusercontent.com/feathericons/feather/master/icons/activity.svg",
+    "created_at": "2026-09-30T10:18:06.912051+00:00"
+  }
+]
