@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   Shield,
@@ -145,131 +146,134 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
     <header className="sticky top-0 z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-zinc-900 px-6 sm:px-8 py-3.5 transition-all">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
-        {/* Left: Clean Company Workspace Brand (Dynamic Logo with Gradient Fallback) */}
-        <div 
-          onClick={() => onSelectView('overview')}
-          className="flex items-center gap-3 cursor-pointer group"
-        >
-          {logoUrl && !logoLoadError ? (
-            <img 
-              src={logoUrl} 
-              alt={displayBrand} 
-              onError={() => setLogoLoadError(true)}
-              className="w-9 h-9 rounded-xl object-contain border border-zinc-800 p-0.5 bg-black/60 shadow-sm shrink-0 group-hover:scale-105 transition-transform" 
-            />
-          ) : (
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-red-900 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform shrink-0">
-              {displayBrand.charAt(0).toUpperCase()}
-            </div>
-          )}
-          <div>
-            <span className="font-bold text-base tracking-tight text-white block leading-tight group-hover:text-red-300 transition-colors">
-              {displayBrand}
-            </span>
-            <span className="text-[10px] tracking-wider uppercase font-mono text-zinc-400 block">
-              Enterprise Portal
-            </span>
-          </div>
-        </div>
-
-        {/* Center: Clean Text Navigation Links + Documents Dropdown */}
-        <nav className="hidden md:flex items-center gap-8">
-          {/* Overview Link */}
-          <button
-            type="button"
+        {/* Left Side: Brand + Left-Aligned Navigation Links */}
+        <div className="flex items-center gap-6 sm:gap-8 lg:gap-10">
+          {/* Clean Company Workspace Brand (Dynamic Logo with Gradient Fallback) */}
+          <div 
             onClick={() => onSelectView('overview')}
-            className={`relative py-1 text-sm font-medium transition-colors cursor-pointer ${
-              activeView === 'overview' ? 'text-white' : 'text-zinc-400 hover:text-white'
-            }`}
+            className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <span>Overview</span>
-            {activeView === 'overview' && (
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+            {logoUrl && !logoLoadError ? (
+              <img 
+                src={logoUrl} 
+                alt={displayBrand} 
+                onError={() => setLogoLoadError(true)}
+                className="w-9 h-9 rounded-xl object-contain border border-zinc-800 p-0.5 bg-black/60 shadow-sm shrink-0 group-hover:scale-105 transition-transform" 
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-red-900 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform shrink-0">
+                {displayBrand.charAt(0).toUpperCase()}
+              </div>
             )}
-          </button>
+            <div>
+              <span className="font-bold text-base tracking-tight text-white block leading-tight group-hover:text-red-300 transition-colors">
+                {displayBrand}
+              </span>
+              <span className="text-[10px] tracking-wider uppercase font-mono text-zinc-400 block">
+                Enterprise Portal
+              </span>
+            </div>
+          </div>
 
-          {/* Documents Dropdown Menu */}
-          <div className="relative" ref={docsDropdownRef}>
+          {/* Left-Aligned Text Navigation Links + Documents Dropdown */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+            {/* Overview Link */}
             <button
               type="button"
-              onClick={() => setIsDocsOpen((prev) => !prev)}
-              className={`relative py-1 text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
-                isDocsActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+              onClick={() => onSelectView('overview')}
+              className={`relative py-1 text-sm font-medium transition-colors cursor-pointer ${
+                activeView === 'overview' ? 'text-white' : 'text-zinc-400 hover:text-white'
               }`}
-              aria-expanded={isDocsOpen}
             >
-              <span>Documents</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isDocsOpen ? 'rotate-180' : ''}`} />
-              {isDocsActive && (
+              <span>Overview</span>
+              {activeView === 'overview' && (
                 <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
               )}
             </button>
 
-            {/* Documents Dropdown Popover */}
-            {isDocsOpen && (
-              <div className="absolute left-0 mt-3 w-60 rounded-xl bg-[#09090b]/95 backdrop-blur-xl border border-zinc-800 shadow-2xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-100">
-                <button
-                  type="button"
-                  onClick={() => {
-                    onSelectView('upload');
-                    setIsDocsOpen(false);
-                  }}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left ${
-                    activeView === 'upload'
-                      ? 'bg-red-950/40 text-red-200 border border-red-900/30'
-                      : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <div className="p-1.5 rounded-lg bg-red-950/60 border border-red-800/40 text-red-400 shrink-0">
-                    <UploadCloud className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white">Upload Document</div>
-                    <div className="text-[10px] text-zinc-400 font-normal">File upload & RBAC tagging</div>
-                  </div>
-                </button>
+            {/* Documents Dropdown Menu */}
+            <div className="relative" ref={docsDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsDocsOpen((prev) => !prev)}
+                className={`relative py-1 text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  isDocsActive ? 'text-white' : 'text-zinc-400 hover:text-white'
+                }`}
+                aria-expanded={isDocsOpen}
+              >
+                <span>Documents</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isDocsOpen ? 'rotate-180' : ''}`} />
+                {isDocsActive && (
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                )}
+              </button>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    onSelectView('manage_docs');
-                    setIsDocsOpen(false);
-                  }}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left ${
-                    activeView === 'manage_docs'
-                      ? 'bg-red-950/40 text-red-200 border border-red-900/30'
-                      : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <div className="p-1.5 rounded-lg bg-rose-950/60 border border-rose-800/40 text-rose-400 shrink-0">
-                    <FileText className="w-3.5 h-3.5" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-white">Uploaded Documents</div>
-                    <div className="text-[10px] text-zinc-400 font-normal">Chunk records & permissions</div>
-                  </div>
-                </button>
-              </div>
-            )}
-          </div>
+              {/* Documents Dropdown Popover */}
+              {isDocsOpen && (
+                <div className="absolute left-0 mt-3 w-60 rounded-xl bg-[#0B0F17] border border-white/10 shadow-2xl p-1.5 z-[60] animate-in fade-in zoom-in-95 duration-100">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectView('upload');
+                      setIsDocsOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                      activeView === 'upload'
+                        ? 'bg-red-950/40 text-red-200 border border-red-900/30'
+                        : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <div className="p-1.5 rounded-lg bg-red-950/60 border border-red-800/40 text-red-400 shrink-0">
+                      <UploadCloud className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white">Upload Document</div>
+                      <div className="text-[10px] text-zinc-400 font-normal">File upload & RBAC tagging</div>
+                    </div>
+                  </button>
 
-          {/* Audit Trail Link */}
-          <button
-            type="button"
-            onClick={() => onSelectView('audit')}
-            className={`relative py-1 text-sm font-medium transition-colors cursor-pointer ${
-              activeView === 'audit' ? 'text-white' : 'text-zinc-400 hover:text-white'
-            }`}
-          >
-            <span>Audit Trail</span>
-            {activeView === 'audit' && (
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
-            )}
-          </button>
-        </nav>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSelectView('manage_docs');
+                      setIsDocsOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-medium transition-colors text-left ${
+                      activeView === 'manage_docs'
+                        ? 'bg-red-950/40 text-red-200 border border-red-900/30'
+                        : 'text-zinc-300 hover:text-white hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <div className="p-1.5 rounded-lg bg-rose-950/60 border border-rose-800/40 text-rose-400 shrink-0">
+                      <FileText className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white">Uploaded Documents</div>
+                      <div className="text-[10px] text-zinc-400 font-normal">Chunk records & permissions</div>
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Audit Trail Link */}
+            <button
+              type="button"
+              onClick={() => onSelectView('audit')}
+              className={`relative py-1 text-sm font-medium transition-colors cursor-pointer ${
+                activeView === 'audit' ? 'text-white' : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <span>Audit Trail</span>
+              {activeView === 'audit' && (
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+              )}
+            </button>
+          </nav>
+        </div>
 
         {/* Right Section: Pill Action + Profile Controls */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="ml-auto flex items-center gap-3 sm:gap-4">
           
           {/* Center-Right Pill Action: "✨ Ask Nova" */}
           <button
@@ -323,7 +327,7 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
 
             {/* Profile Dropdown Menu */}
             {isProfileOpen && (
-              <div className="absolute right-0 mt-2.5 w-72 rounded-2xl bg-[#09090b]/98 border border-zinc-800 shadow-2xl p-4 z-50 animate-in fade-in zoom-in-95 duration-150">
+              <div className="absolute right-0 mt-2.5 w-72 rounded-2xl bg-[#0B0F17] border border-white/10 shadow-2xl p-4 z-[60] animate-in fade-in zoom-in-95 duration-150">
                 
                 {/* User ID Header & Inline Edit */}
                 <div className="pb-3 border-b border-zinc-800">
@@ -474,16 +478,14 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
 
       </div>
 
-      {/* Glassmorphism Workspace Settings Modal (Admin Only) */}
-      {isSettingsOpen && (
+      {/* Glassmorphism Workspace Settings Modal (Admin Only - Rendered into body via Portal to prevent header backdrop-filter trapping) */}
+      {isSettingsOpen && typeof document !== 'undefined' && createPortal(
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setIsSettingsOpen(false);
-          }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setIsSettingsOpen(false)}
         >
           <div 
-            className="relative w-full max-w-lg rounded-2xl bg-[#09090b]/98 border border-zinc-800 shadow-[0_0_60px_rgba(185,28,28,0.15)] backdrop-blur-2xl p-6 text-left overflow-hidden animate-in zoom-in-95 duration-150"
+            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#0B0F17] border border-white/10 rounded-2xl p-6 shadow-[0_0_60px_rgba(0,0,0,0.9)] text-left animate-in zoom-in-95 duration-150 custom-scrollbar"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Ambient Lighting Gradients */}
@@ -663,7 +665,8 @@ export default function Navbar({ activeView = 'overview', onSelectView }) {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );
