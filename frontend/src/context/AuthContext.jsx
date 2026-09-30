@@ -166,6 +166,42 @@ export function AuthProvider({ children }) {
     setActiveRole(role);
   }, [setActiveRole]);
 
+  // Update Workspace Branding (Company Name & Logo)
+  const updateWorkspaceSettings = useCallback(({ companyName: newName, logoUrl: newLogo }) => {
+    if (newName !== undefined) {
+      setCompanyName(newName);
+    }
+    if (newLogo !== undefined) {
+      setLogoUrl(newLogo);
+    }
+
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const parsed = saved ? JSON.parse(saved) : {};
+      if (newName !== undefined) parsed.companyName = newName;
+      if (newLogo !== undefined) parsed.logoUrl = newLogo;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+    } catch (e) {
+      console.error('Failed to update session in localStorage:', e);
+    }
+
+    // Keep registeredCompanies in sync in memory
+    setRegisteredCompanies((prev) =>
+      prev.map((c) => {
+        if (c.tenant_id?.toLowerCase() === tenantId.toLowerCase()) {
+          return {
+            ...c,
+            ...(newName !== undefined ? { company_name: newName, name: newName } : {}),
+            ...(newLogo !== undefined ? { logo_url: newLogo } : {}),
+          };
+        }
+        return c;
+      })
+    );
+
+    addToast('Workspace settings saved successfully', 'success');
+  }, [tenantId, addToast]);
+
   const activeRole = userRoles[0] || 'admin';
 
   return (
@@ -175,10 +211,12 @@ export function AuthProvider({ children }) {
         tenantId,
         setTenantId,
         companyName,
+        setCompanyName,
         tenantName: companyName,
         workspaceName: companyName,
         logoUrl,
         setLogoUrl,
+        updateWorkspaceSettings,
         loginWorkspace,
         logoutWorkspace,
         registeredCompanies,

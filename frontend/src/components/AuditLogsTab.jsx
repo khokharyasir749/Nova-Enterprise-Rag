@@ -67,38 +67,38 @@ export default function AuditLogsTab() {
     <div className="space-y-4">
       
       {/* Control & Filter Bar */}
-      <div className="bg-[#0B0F17] rounded-[24px] border border-white/5 p-4 sm:p-5 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-[#09090b]/90 rounded-[24px] border border-zinc-800 p-4 sm:p-5 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
         
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           {/* Tenant Filter */}
-          <div className="flex items-center gap-2 bg-black/40 border border-white/10 rounded-full px-3.5 py-1.5 text-xs text-slate-300">
-            <Filter className="w-3.5 h-3.5 text-slate-400" />
-            <label htmlFor="audit-tenant-filter" className="text-slate-400">Tenant:</label>
+          <div className="flex items-center gap-2 bg-black/60 border border-zinc-800 rounded-full px-3.5 py-1.5 text-xs text-zinc-300">
+            <Filter className="w-3.5 h-3.5 text-red-400" />
+            <label htmlFor="audit-tenant-filter" className="text-zinc-400">Tenant:</label>
             <select
               id="audit-tenant-filter"
               value={tenantFilter}
               onChange={(e) => setTenantFilter(e.target.value)}
-              className="bg-transparent text-slate-100 font-medium outline-none cursor-pointer"
+              className="bg-transparent text-zinc-100 font-medium outline-none cursor-pointer"
             >
-              <option value="all" className="bg-[#0B0F17]">All Tenants</option>
+              <option value="all" className="bg-[#09090b]">All Tenants</option>
               {registeredCompanies?.map((c) => (
-                <option key={c.tenant_id} value={c.tenant_id} className="bg-[#0B0F17]">{c.name} ({c.tenant_id})</option>
+                <option key={c.tenant_id} value={c.tenant_id} className="bg-[#09090b]">{c.name} ({c.tenant_id})</option>
               ))}
               {activeTenant && !registeredCompanies?.some(c => c.tenant_id === activeTenant) && (
-                <option value={activeTenant} className="bg-[#0B0F17]">{activeTenant}</option>
+                <option value={activeTenant} className="bg-[#09090b]">{activeTenant}</option>
               )}
             </select>
           </div>
 
           {/* Search Input */}
           <div className="relative flex-1 sm:w-64">
-            <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search user, query, doc..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-full bg-black/40 border border-white/10 focus:border-cyan-500/50 text-xs text-slate-200 rounded-full pl-9 pr-4 py-1.5 outline-none placeholder:text-neutral-500 transition-colors"
+              className="w-full bg-black/60 border border-zinc-800 focus:border-red-500 focus:ring-1 focus:ring-red-500/40 text-xs text-zinc-200 rounded-full pl-9 pr-4 py-1.5 outline-none placeholder:text-zinc-500 transition-colors font-mono"
             />
           </div>
         </div>
@@ -107,14 +107,14 @@ export default function AuditLogsTab() {
         <div className="flex items-center gap-3 w-full md:w-auto justify-end">
           
           {/* Auto Refresh Toggle */}
-          <label className="flex items-center gap-2 cursor-pointer text-xs text-neutral-400 select-none">
+          <label className="flex items-center gap-2 cursor-pointer text-xs text-zinc-400 select-none">
             <input
               type="checkbox"
               checked={autoRefresh}
               onChange={(e) => setAutoRefresh(e.target.checked)}
               className="sr-only peer"
             />
-            <div className="w-7 h-4 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-cyan-600 relative"></div>
+            <div className="w-7 h-4 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-red-600 relative"></div>
             <span>Auto-refresh</span>
           </label>
 
@@ -122,15 +122,15 @@ export default function AuditLogsTab() {
           <button
             onClick={() => loadLogs(false)}
             disabled={loading}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 text-slate-200 border border-white/10 text-xs font-medium transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 text-zinc-200 border border-zinc-800 hover:border-red-900/40 hover:text-red-300 text-xs font-medium transition-colors cursor-pointer"
             title="Refresh logs now"
           >
-            <RefreshCw className={`w-3 h-3 text-slate-400 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-3 h-3 text-red-400 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
           </button>
 
           {/* Total Badge */}
-          <div className="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.04] text-neutral-300 border border-white/10">
+          <div className="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.04] text-zinc-300 border border-zinc-800">
             {filteredLogs.length} Records
           </div>
 
@@ -139,10 +139,10 @@ export default function AuditLogsTab() {
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-[#0B0F17] rounded-[24px] border border-white/5 shadow-2xl overflow-hidden">
+      <div className="bg-[#09090b]/90 rounded-[24px] border border-zinc-800 shadow-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 border-b border-slate-800 uppercase font-semibold text-slate-400 tracking-wider text-[10px]">
+            <thead className="bg-black/60 border-b border-zinc-800 uppercase font-semibold text-zinc-400 tracking-wider text-[10px]">
               <tr>
                 <th className="py-2.5 px-4">Status</th>
                 <th className="py-2.5 px-4">Timestamp (UTC)</th>
@@ -154,14 +154,14 @@ export default function AuditLogsTab() {
                 <th className="py-2.5 px-4">Audit ID</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80">
+            <tbody className="divide-y divide-zinc-800/80">
               {filteredLogs.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="py-10 text-center text-slate-500">
+                  <td colSpan={8} className="py-10 text-center text-zinc-500">
                     <div className="flex flex-col items-center justify-center space-y-1.5">
-                      <Clock className="w-6 h-6 text-slate-600" />
-                      <p className="text-xs text-slate-400">No audit records found matching your filters.</p>
-                      <p className="text-[11px] text-slate-600">
+                      <Clock className="w-6 h-6 text-zinc-600" />
+                      <p className="text-xs text-zinc-400">No audit records found matching your filters.</p>
+                      <p className="text-[11px] text-zinc-600">
                         Query the RAG system to generate security audit log entries.
                       </p>
                     </div>
@@ -175,7 +175,7 @@ export default function AuditLogsTab() {
                   return (
                     <tr
                       key={log.id}
-                      className="hover:bg-slate-800/40 transition-colors font-mono"
+                      className="hover:bg-zinc-900/40 transition-colors font-mono"
                     >
                       {/* Status */}
                       <td className="py-2.5 px-4 whitespace-nowrap">
@@ -184,34 +184,34 @@ export default function AuditLogsTab() {
                             isGranted
                               ? 'bg-emerald-950/30 text-emerald-400 border border-emerald-800/40'
                               : isConv
-                              ? 'bg-slate-800 text-slate-300 border border-slate-700'
-                              : 'bg-rose-950/30 text-rose-400 border border-rose-800/40'
+                              ? 'bg-zinc-900 text-zinc-300 border border-zinc-800'
+                              : 'bg-red-950/30 text-red-400 border border-red-800/50'
                           }`}
                         >
                           {isGranted ? (
                             <CheckCircle className="w-3 h-3 text-emerald-400" />
                           ) : isConv ? (
-                            <Sparkles className="w-3 h-3 text-slate-400" />
+                            <Sparkles className="w-3 h-3 text-zinc-400" />
                           ) : (
-                            <XCircle className="w-3 h-3 text-rose-400" />
+                            <XCircle className="w-3 h-3 text-red-400" />
                           )}
                           <span>{log.access_status}</span>
                         </span>
                       </td>
 
                       {/* Timestamp */}
-                      <td className="py-2.5 px-4 whitespace-nowrap text-slate-400 text-[11px]">
+                      <td className="py-2.5 px-4 whitespace-nowrap text-zinc-400 text-[11px]">
                         {log.timestamp ? log.timestamp.replace('T', ' ').slice(0, 19) : 'N/A'}
                       </td>
 
                       {/* User */}
-                      <td className="py-2.5 px-4 font-sans font-medium text-slate-200">
+                      <td className="py-2.5 px-4 font-sans font-medium text-zinc-200">
                         {log.user_id}
                       </td>
 
                       {/* Tenant */}
                       <td className="py-2.5 px-4">
-                        <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 text-[11px]">
+                        <span className="px-1.5 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800 text-[11px]">
                           {log.tenant_id}
                         </span>
                       </td>
@@ -222,7 +222,7 @@ export default function AuditLogsTab() {
                           {log.user_roles?.map((r, i) => (
                             <span
                               key={i}
-                              className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-300 text-[10px] uppercase font-semibold border border-slate-700/60"
+                              className="px-1.5 py-0.5 rounded bg-zinc-900 text-zinc-300 text-[10px] uppercase font-semibold border border-zinc-800"
                             >
                               {r}
                             </span>
@@ -231,7 +231,7 @@ export default function AuditLogsTab() {
                       </td>
 
                       {/* Query */}
-                      <td className="py-2.5 px-4 font-sans text-slate-200 max-w-xs truncate" title={log.query}>
+                      <td className="py-2.5 px-4 font-sans text-zinc-200 max-w-xs truncate" title={log.query}>
                         "{log.query}"
                       </td>
 
@@ -242,7 +242,7 @@ export default function AuditLogsTab() {
                             {log.retrieved_documents.map((d, i) => (
                               <span
                                 key={i}
-                                className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700 text-[10px]"
+                                className="px-1.5 py-0.5 rounded bg-zinc-900 text-zinc-200 border border-zinc-800 text-[10px]"
                                 title={d}
                               >
                                 {d}
@@ -250,14 +250,14 @@ export default function AuditLogsTab() {
                             ))}
                           </div>
                         ) : (
-                          <span className="text-slate-500 italic font-sans text-[11px]">
+                          <span className="text-zinc-500 italic font-sans text-[11px]">
                             [None - Blocked]
                           </span>
                         )}
                       </td>
 
                       {/* Audit ID */}
-                      <td className="py-2.5 px-4 text-[10px] text-slate-500 font-mono" title={log.id}>
+                      <td className="py-2.5 px-4 text-[10px] text-zinc-500 font-mono" title={log.id}>
                         {log.id.slice(0, 8)}...
                       </td>
                     </tr>

@@ -136,6 +136,20 @@ class CompanyLogoUpdateResponse(BaseModel):
     logo_url: str
 
 
+class CompanyUpdateRequest(BaseModel):
+    name: Optional[str] = Field(None, description="Company name")
+    logo_url: Optional[str] = Field(None, description="Company logo URL or base64 image data")
+
+
+class CompanyUpdateResponse(BaseModel):
+    status: str = "success"
+    message: str = "Company workspace updated successfully"
+    tenant_id: str
+    name: str
+    logo_url: Optional[str] = None
+    created_at: Optional[str] = None
+
+
 # ==========================================
 # Document Management & RBAC Models
 # ==========================================
